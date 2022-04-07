@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option csharp_namespace = "DemoGrpc.Services.Team";
+
+package team;
+
+service TeamServiceContract {
+  rpc CreateTeam (CreateTeamRequest) returns (TeamReply);
+  rpc GetTeam (GetTeamRequest) returns (TeamReply);
+  rpc GetTeamList (GetTeamListRequest) returns (TeamListReply);
+}
+
+message TeamReply {
+  int64 id = 1;
+  string name = 2;
+  string confederation = 3;
+}
+
+message TeamListReply {
+  repeated TeamReply Teams = 1;
+}
+
+message CreateTeamRequest {
+  string name = 1;
+  optional string confederation = 2;
+}
+
+message GetTeamRequest {
+  int64 id = 1;
+}
+
+message GetTeamListRequest {
+  optional string name = 1;
+}
